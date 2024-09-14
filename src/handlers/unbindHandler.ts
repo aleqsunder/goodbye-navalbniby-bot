@@ -27,8 +27,6 @@ export async function unbindHandler(interaction: CommandInteraction, options: an
         return
     }
 
-    await interaction.reply(`Пользователь <@${user.id}> успешно отвязан от канала <#${channel.id}>`)
-
     try {
         const configRepository = await ConfigRepository()
         const config: Config | null = await configRepository.getOneBy({
@@ -49,6 +47,7 @@ export async function unbindHandler(interaction: CommandInteraction, options: an
         }
 
         await configRepository.remove(config)
+        await interaction.reply(`Пользователь <@${user.id}> успешно отвязан от канала <#${channel.id}>`)
     } catch (error) {
         console.error('Ошибка при удалении роли пользователя:', error)
         await interaction.reply(`Ошибка при удалении роли пользователя <@${user.id}> из канала <#${channel.id}>`)
