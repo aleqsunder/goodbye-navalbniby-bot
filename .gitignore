@@ -3,3 +3,4 @@
 /.idea/
 /dist/
 discord_bot.db
+.env.local
