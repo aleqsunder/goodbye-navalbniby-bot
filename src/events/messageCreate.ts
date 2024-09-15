@@ -48,7 +48,11 @@ export async function messageCreateHandler(message: MessageType): Promise<void> 
             SendMessages: false,
         })
 
-        await message.delete()
+        try {
+            await message.delete()
+        } catch (e) {
+            console.log(`Не удалось удалить сообщение ${message.id}`)
+        }
         return
     }
 
